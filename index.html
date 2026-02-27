@@ -25,7 +25,7 @@
             --text-primary: #1A1A1A;
             --text-secondary: #7A7A7A;
             --bg-light: #FAFAFA;
-            --divider: #E8E8E8;
+            --divider: #cccccc;
             --accent-green: #22C55E;
         }
 
@@ -303,6 +303,20 @@
 
         .material-icons {
             font-size: 20px;
+        }
+
+        /* Pulse animation for download button */
+        @keyframes pulse-scale {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        [data-download-btn] {
+            animation: pulse-scale 2s ease-in-out infinite;
         }
 
         /* Section Styles */
@@ -1112,9 +1126,17 @@
         // Mobile menu toggle
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-links a');
 
         navToggle.addEventListener('click', () => {
             nav.classList.toggle('menu-open');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('menu-open');
+            });
         });
     </script>
 </body>
